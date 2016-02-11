@@ -1,13 +1,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
-            <div class="panel panel-myApp" dw-loading="signin"
-                 dw-loading-options="{text: 'Validating User...', className: 'panel-loading', spinnerOptions: {color: '#ffffff'}}">>
-
+            <div class="panel panel-myApp">
                 <div class="panel-body">
                     <div class="row">
                         <img class="image-header" src="img/daystar.png">
-
                         <div class="col-md-12">
                             <form name="signinForm" role="form" novalidate>
                                 <div class="form-group has-feedback" show-errors>
@@ -35,8 +32,13 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-12 buttons-area">
-                                            <button  type="submit" class="btn btn-default center-block" ng-click="validate(user)">
-                                                Sign in
+                                            <button type="submit" class="btn btn-default center-block"
+                                                    ng-click="validate(signinForm)">
+                                                <span ng-hide="loading">Sign in</span>
+                                                <span ng-show="loading">
+                                                    Validating
+                                                    <i class="fa fa-spinner fa-spin"></i>
+                                                </span>
                                             </button>
                                         </div>
                                     </div>
@@ -45,6 +47,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="panel-footer">
                     <a ui-sref="forgot">Forgot Password?</a>
                     <a ui-sref="register">Create Account</a>

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.signin', ['darthwade.dwLoading', 'ui.router'])
+angular.module('myApp.signin', ['ui.router'])
 
     .config(function ($stateProvider) {
         $stateProvider.state('signin', {
@@ -16,17 +16,17 @@ angular.module('myApp.signin', ['darthwade.dwLoading', 'ui.router'])
         });
     })
 
-    .controller('SignCtrl', function($scope, $loading) {
+    .controller('SignCtrl', function ($scope) {
         $scope.errors = {
             'required': 'This field is required'
         };
-
-        $scope.validate = function() {
+        $scope.loading = false;
+        $scope.validate = function (signinForm) {
             $scope.$broadcast('show-errors-check-validity');
 
-            if($scope.signinForm.$valid)
+            if (signinForm.$valid)
             {
-                $loading.start('signin');
+                $scope.loading = true;
             }
         }
     });

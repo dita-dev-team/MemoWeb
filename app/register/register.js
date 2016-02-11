@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.register', ['darthwade.dwLoading', 'ui.router'])
+angular.module('myApp.register', ['ui.router'])
 
     .config(function ($stateProvider) {
         $stateProvider.state('register', {
@@ -10,19 +10,20 @@ angular.module('myApp.register', ['darthwade.dwLoading', 'ui.router'])
         });
     })
 
-    .controller('RegisterCtrl', function($scope, $loading) {
+    .controller('RegisterCtrl', function ($scope) {
         $scope.errors = {
             'required': 'This field is required',
             'email': 'The email address is invalid',
             'match': 'Passwords do not match'
         };
         $scope.type = 1;
+        $scope.loading = false;
         $scope.validate = function() {
             $scope.$broadcast('show-errors-check-validity');
 
             if($scope.registerForm.$valid)
             {
-                $loading.start('register');
+                $scope.loading = true;
             }
         };
 
